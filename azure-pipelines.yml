@@ -30,11 +30,6 @@ stages:
   - job: BuildJob
     pool: myAgentPool
     steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(pythonVersion)'
-      displayName: 'Use Python $(pythonVersion)'
-    
     - script: |
         python3.9 -m venv antenv
         source antenv/bin/activate
@@ -69,12 +64,6 @@ stages:
       runOnce:
         deploy:
           steps:
-          
-          - task: UsePythonVersion@0
-            inputs:
-              versionSpec: '$(pythonVersion)'
-            displayName: 'Use Python version'
-
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App : ml-webapp'
             inputs:

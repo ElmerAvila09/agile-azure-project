@@ -12,16 +12,13 @@ variables:
   azureServiceConnectionId: 'myServiceConnection'
   
   # Web app name
-  webAppName: 'agilewebapp243269'
+  webAppName: 'agilewebapp243371'
 
   # Environment name
   environmentName: 'agile-azure-project'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
-  
-  # Python version: 3.9
-  pythonVersion: '3.9'
 
 stages:
 - stage: Build

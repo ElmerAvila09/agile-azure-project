@@ -15,17 +15,24 @@ variables:
   webAppName: 'agilewebapp243371'
   projectRoot: $(System.DefaultWorkingDirectory)
   environmentName: 'msdocs_sample_app'
+  vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: myAgentPool
+    pool: 
+      name: myAgentPool
+      vmImage: $(vmImageName)
     steps:
     - script: |
         export PATH=$HOME/.local/bin:$PATH
-        python3.9 -m pip install -r requirements.txt
+        python3 -m venv ~/.myenv
+        source ~/.myenv/bin/activate
+        python -m pip install --upgrade pip
+        pip install setup
+        python3 -m pip install -r requirements.txt
       workingDirectory: $(projectRoot)
       displayName: 'Step - Install requirements.txt'
       
@@ -48,7 +55,9 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool: myAgentPool
+    pool: 
+      name: myAgentPool
+      vmImage: $(vmImageName)
     environment: $(environmentName)
     strategy:
       runOnce:

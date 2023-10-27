@@ -6,9 +6,7 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
-  name: myAgentPool
+pool: myAgentPool
 
 variables:
   azureServiceConnectionId: 'myServiceConnection'
@@ -22,12 +20,9 @@ stages:
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: 
-      name: myAgentPool
-      vmImage: $(vmImageName)
+    pool: myAgentPool
     steps:
     - script: |
-        export PATH=$HOME/.local/bin:$PATH
         python3 -m venv ~/.myenv
         source ~/.myenv/bin/activate
         python -m pip install --upgrade pip
@@ -55,9 +50,7 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool: 
-      name: myAgentPool
-      vmImage: $(vmImageName)
+    pool: myAgentPool
     environment: $(environmentName)
     strategy:
       runOnce:

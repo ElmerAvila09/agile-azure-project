@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool: myAgentPool
+pool: Default
 
 variables:
   azureServiceConnectionId: 'myServiceConnection'
@@ -20,13 +20,10 @@ stages:
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool: myAgentPool
+    pool: Default
     steps:
     - script: |
-        python3 -m venv ~/.myenv1
-        source ~/.myenv1/bin/activate
         python -m pip install --upgrade pip
-        pip install setup
         python3 -m pip install -r requirements.txt
       workingDirectory: $(projectRoot)
       displayName: 'Step - Install requirements.txt'

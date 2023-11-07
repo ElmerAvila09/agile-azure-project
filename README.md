@@ -168,6 +168,10 @@ Push the changes to GitHub and verify that both lint and test steps pass in your
 ![actions](images/actions.png)
 ![actions1](images/actions1.png)
 
+Add the status badge to indicate the status of your workflows.
+
+![actions2](images/actions2.png)
+
 ## 3. Continuous Delivery on Azure
 It's time to set up Continuous Delivery using Azure technologies.
 
@@ -277,3 +281,5 @@ The current project exists only in one environment the main branch, which is dan
 ## Demo 
 
 [Demo](https://youtu.be/bsbQf7FfDJM)
+
+[![Python application test with Github Actions](https://github.com/ElmerAvila09/agile-azure-project/actions/workflows/main.yml/badge.svg)](https://github.com/ElmerAvila09/agile-azure-project/actions/workflows/main.yml)
